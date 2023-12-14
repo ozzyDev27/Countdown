@@ -1,0 +1,17 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #0f0f0f;
+}
+
+.mainText {
+	padding: 10px;
+	text-align: center;
+	font-family: 'Preahvihear', sans-serif;
+	font-size:10vw;
+	color: #ffffff;
+}
