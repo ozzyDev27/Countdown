@@ -13,5 +13,6 @@ html, body {
 	text-align: center;
 	font-family: 'Preahvihear', sans-serif;
 	font-size:10vw;
-	color: #ffffff;
+	color:#ffffff;
+	cursor:none;
 }
