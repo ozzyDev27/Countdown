@@ -1,7 +1,7 @@
 function timeUntil() {
 	const now = new Date();
 	const targetTime = new Date(now);
-	targetTime.setHours(10, 48, 0, 0);
+	targetTime.setHours(10, 47, 27, 0);
     if (now>targetTime){
         const mainTextElement = document.querySelector('.mainText');
         mainTextElement.innerHTML = "Done!"; 
