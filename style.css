@@ -12,7 +12,11 @@ html, body {
 	padding: 10px;
 	text-align: center;
 	font-family: 'Preahvihear', sans-serif;
-	font-size:10vw;
-	color:#ffffff;
-	cursor:none;
+	font-size: 10vw;
+	color: #ffffff;
+	cursor: none;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
