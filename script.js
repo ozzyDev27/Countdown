@@ -15,7 +15,7 @@ function timeUntil() {
 	}
 }
 
-setInterval(timeUntil, 1000);
+setInterval(timeUntil, 200);
 
 document.addEventListener('DOMContentLoaded', () => {
 	const mainTextElement = document.querySelector('.mainText');
