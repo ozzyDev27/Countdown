@@ -9,6 +9,7 @@ html, body {
 }
 
 .mainText {
+	transform: rotate(-90deg);
 	padding: 10px;
 	text-align: center;
 	font-family: 'Preahvihear', sans-serif;
