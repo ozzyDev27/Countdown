@@ -14,17 +14,19 @@ function timeUntil() {
         mainTextElement.innerHTML = formattedTime;
     }
 
-    rotateMainTextIfNeeded();
+    adjustMainText(); // Call the function to adjust text size and rotation
 }
 
-function rotateMainTextIfNeeded() {
+function adjustMainText() {
     const mainTextElement = document.querySelector('.mainText');
     const screenHeight = window.innerHeight;
     const screenWidth = window.innerWidth;
     if (screenHeight > screenWidth) {
-        mainTextElement.style.transform = 'rotate(270deg)';
+        mainTextElement.style.transform = 'rotate(90deg)';
+        mainTextElement.style.fontSize = '10vh'; // Set font size to 10vh if rotated
     } else {
-        mainTextElement.style.transform = 'rotate(0deg)';
+        mainTextElement.style.transform = 'none';
+        mainTextElement.style.fontSize = '10vw'; // Set font size to 10vw if not rotated
     }
 }
 
