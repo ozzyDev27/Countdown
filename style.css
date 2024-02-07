@@ -6,10 +6,10 @@ html, body {
 	align-items: center;
 	justify-content: center;
 	background-color: #0f0f0f;
-}
-
-.mainText {
-	transform: rotate(-90deg);
+	overflow: hidden;
+  }
+  
+  .mainText {
 	padding: 10px;
 	text-align: center;
 	font-family: 'Preahvihear', sans-serif;
@@ -21,4 +21,4 @@ html, body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
+  }
