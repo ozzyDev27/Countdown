@@ -22,8 +22,8 @@ function adjustMainText() {
     const screenHeight = window.innerHeight;
     const screenWidth = window.innerWidth;
     if (screenHeight > screenWidth) {
-        mainTextElement.style.transform = 'rotate(90deg)';
-        mainTextElement.style.fontSize = '10vh'; // Set font size to 10vh if rotated
+        mainTextElement.style.transform = 'rotate(270deg)';
+        mainTextElement.style.fontSize = '20vh'; // Set font size to 10vh if rotated
     } else {
         mainTextElement.style.transform = 'none';
         mainTextElement.style.fontSize = '10vw'; // Set font size to 10vw if not rotated
