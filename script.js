@@ -3,7 +3,7 @@ let countdownEndTime = null; // Variable to track the time when countdown ends
 
 function timeUntil() {
     const now = new Date();
-    const Times = [[9, 20, 0, true], [9,22,0,false], [10, 47, 27, true], [10,49,27,false], [11, 30, 6, true], [12, 3, 6, true], [12,5,6,false], [13, 27, 42,true],[13,29,42,false], [14, 45, 0,true], [24,0,0,false]];
+    const Times = [[9, 20, 0, true], [9,22,0,false], [10, 47, 27, true], [10,49,27,false], [11, 27, 56, true], [12, 3, 6, true], [12,5,6,false], [13, 27, 42,true],[13,29,42,false], [14, 45, 0,true], [24,0,0,false]];
 
     // Convert Times array into an array of Date objects
     const timesInDateObjects = Times.map(time => {
