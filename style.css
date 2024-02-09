@@ -24,7 +24,7 @@ html, body {
     font-family: 'Preahvihear', sans-serif;
     font-size: 10vw;
 	background-color:#0f0f0f;
-    background: linear-gradient(to bottom right, #E62BA8, #E33059, #E24141, #F1733D, #FCDB64, #49E25B, #30CC9F, #39D2C0, #44AAEA, #5D6AF3, #A24BCE, #C028B6);
+    background: linear-gradient(to bottom right, #E62BA8, #E33059, #E24141, #F1733D, #FCDB64, #49E25B, #30CC9F, #39D2C0, #44AAEA, #5D6AF3, #A24BCE, #C028B6,#E62BA8, #E33059, #E24141,#F1733D);
     background-size: 400% 400%; /* Adjusted the size to 600% */
 	background-clip: text;
     -webkit-background-clip: text;
@@ -34,17 +34,14 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: gradient 30s linear infinite;
+    animation: gradient 15s linear infinite;
 }
 
 @keyframes gradient {
     0% {
         background-position: 0% 0%;
     }
-    50% {
-        background-position: 100% 100%; /* Adjusted to 100% */
-    }
 	100% {
-        background-position: 0% 0%;
+        background-position: 100% 100%;
     }
 }
