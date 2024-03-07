@@ -67,10 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Start the countdown loop after a brief delay to allow rendering of initial value 
-    setTimeout(() => {
-        setInterval(timeUntil, 200);
-    }, 500);
-
+    setInterval(timeUntil, 200);
     // Fullscreen functionality with background color adjustment
     mainTextElement.addEventListener('click', enterFullscreen);
 });
