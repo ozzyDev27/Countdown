@@ -65,9 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
             mainTextElement.webkitRequestFullscreen();
         }
     }
-
-    // Start the countdown loop after a brief delay to allow rendering of initial value 
-    setInterval(timeUntil, 200);
-    // Fullscreen functionality with background color adjustment
-    mainTextElement.addEventListener('click', enterFullscreen);
+    const now = new Date();
+    if (now.getDay() === 0 || now.getDay() === 6){ // is it Saturday or Sunday
+        const mainTextElement = document.querySelector('.mainText');
+        mainTextElement.innerHTML = "Weekend :)"; // Show weekend message
+    } else {
+        // Start the countdown loop after a brief delay to allow rendering of initial value 
+        setInterval(timeUntil, 200);
+        // Fullscreen functionality with background color adjustment
+        mainTextElement.addEventListener('click', enterFullscreen);
+    }
 });
