@@ -57,7 +57,7 @@ function adjustMainText() {
 // Initialize mainTextElement with an initial value
 document.addEventListener('DOMContentLoaded', () => {
     const mainTextElement = document.querySelector('.mainText');
-    mainTextElement.innerHTML = "Loading..."; // Show loading message initially
+    //mainTextElement.innerHTML = "Loading..."; // no point as it loads instantly
 
     // Function to handle entering fullscreen
     function enterFullscreen() {
@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const mainTextElement = document.querySelector('.mainText');
         mainTextElement.innerHTML = "Weekend :)"; // Show weekend message
     } else {
+        timeUntil();
         // Start the countdown loop after a brief delay to allow rendering of initial value 
         setInterval(timeUntil, 200);
         // Fullscreen functionality with background color adjustment
