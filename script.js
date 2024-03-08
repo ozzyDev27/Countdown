@@ -54,19 +54,19 @@ function moveText() {
     // Check if the text hits the boundaries and adjust the speed accordingly
     if (x >= screenWidth - mainTextElement.offsetWidth + 20) {
         x = screenWidth - mainTextElement.offsetWidth -1; // Adjust x position to stay within the boundary
-        xSpeed *= (-0.2*Math.random())+0.9; // Reverse x direction
+        xSpeed *= (-0.2*Math.random())-0.9; // Reverse x direction
         
     } else if (x <= -20) {
         x = 1; // Adjust x position to stay within the boundary
-        xSpeed *= (-0.2*Math.random())+0.9; // Reverse x direction
+        xSpeed *= (-0.2*Math.random())-0.9; // Reverse x direction
     }
     
     if (y >= screenHeight - mainTextElement.offsetHeight + 20) {
         y = screenHeight - mainTextElement.offsetHeight - 1; // Adjust y position to stay within the boundary
-        ySpeed *= (-0.2*Math.random())+0.9; // Reverse y direction
+        ySpeed *= (-0.2*Math.random())-0.9; // Reverse y direction
     } else if (y <= -20) {
         y = 1; // Adjust y position to stay within the boundary
-        ySpeed *= (-0.2*Math.random())+0.9; // Reverse y direction   
+        ySpeed *= (-0.2*Math.random())-0.9; // Reverse y direction   
     }
 
     // Update the position of the text element
