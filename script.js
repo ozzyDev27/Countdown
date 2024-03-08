@@ -51,14 +51,21 @@ function moveText() {
     
     x += xSpeed;
     y += ySpeed;
+    let cornerHit = 0;
     // Check if the text hits the boundaries and adjust the speed accordingly
     if (x >= screenWidth - mainTextElement.offsetWidth + 20) {
         x = screenWidth - mainTextElement.offsetWidth -1; // Adjust x position to stay within the boundary
         xSpeed *= (-0.2*Math.random())-0.9; // Reverse x direction
-        
+        cornerHit++;
     } else if (x <= -20) {
         x = 1; // Adjust x position to stay within the boundary
         xSpeed *= (-0.2*Math.random())-0.9; // Reverse x direction
+        cornerHit++;
+    }
+
+    if (cornerHit === 2) {
+        console.log("CORNER HIT!");
+        addCornerHit();
     }
     
     if (y >= screenHeight - mainTextElement.offsetHeight + 20) {
