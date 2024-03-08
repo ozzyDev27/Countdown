@@ -28,7 +28,7 @@ html, body {
     color: transparent;
     cursor: none;
     position: absolute;
-    /*height: 20%;*/
+    height: 10vw;
     display: flex;
     align-items: center;
     justify-content: center;
