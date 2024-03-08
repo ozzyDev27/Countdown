@@ -1,7 +1,7 @@
 let closestTimeIndex = 0;
 let countdownEndTime = null;
-let xSpeed = 1;
-let ySpeed = 1
+let xSpeed = 1.27;
+let ySpeed = 1.27;
 
 function timeUntil() {
     const now = new Date();
