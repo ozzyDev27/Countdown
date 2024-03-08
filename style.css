@@ -29,6 +29,7 @@ html, body {
     cursor: none;
     position: absolute;
     height: 10vw;
+    width: min-content;
     align-items: center;
     justify-content: center;
     animation: gradient 15s linear infinite;
