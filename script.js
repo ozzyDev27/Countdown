@@ -105,3 +105,30 @@ document.addEventListener('DOMContentLoaded', () => {
         mainTextElement.addEventListener('click', enterFullscreen);
     }
 });
+
+let x = 0,
+    y = 0,
+    dirX = 1,
+    dirY = 1;
+const speed = 3;
+
+function animate() {
+    const screenHeight = document.body.clientHeight;
+    const screenWidth = document.body.clientWidth;
+    let dvd = document.querySelector('.mainText');
+    const dvdWidth = dvd.clientWidth;
+    const dvdHeight = dvd.clientHeight;
+
+    if (y + dvdHeight >= screenHeight || y < 0) {
+        dirY *= -1;
+    }
+    if (x + dvdWidth >= screenWidth || x < 0) {
+        dirX *= -1;
+    }
+    x += dirX * speed;
+    y += dirY * speed;
+    dvd.style.left = x + "px";
+    dvd.style.top = y + "px";
+    window.requestAnimationFrame(animate);
+}
+window.requestAnimationFrame(animate);
