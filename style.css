@@ -28,6 +28,7 @@ html, body {
     color: transparent;
     cursor: none;
     position: absolute;
+    display: flex;
     height: 12.5vw;
     width: min-content;
     align-items: center;
