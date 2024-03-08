@@ -1,7 +1,3 @@
-:-webkit-full-screen {
-    background-color: #0f0f0f;
-}
-
 html, body {
     height: 100%;
     width: 100%;
@@ -14,19 +10,20 @@ html, body {
 }
 
 .grayBackground {
-	background-color: #ffffff;
-	size:100%;
-	z-index:999;
+    background-color: #ffffff;
+    size:100%;
+    z-index:999;
 }
+
 .mainText {
     padding: 10px;
     text-align: left;
-    font-family: 'Preahvihear', sans-serif;
+    font-family: 'Chivo', sans-serif, bold;
     font-size: 10vw;
-	background-color:#0f0f0f;
-    background: linear-gradient(to bottom right, #E62BA8, #E33059, #E24141, #F1733D, #FCDB64, #49E25B, #30CC9F, #39D2C0, #44AAEA, #5D6AF3, #A24BCE, #C028B6,#E62BA8, #E33059, #E24141,#F1733D);
+    background-color: #0f0f0f;
+    background: linear-gradient(to bottom right, #E62BA8, #E33059, #E24141, #F1733D, #FCDB64, #49E25B, #30CC9F, #39D2C0, #44AAEA, #5D6AF3, #A24BCE, #C028B6, #E62BA8, #E33059, #E24141, #F1733D);
     background-size: 400% 400%; /* Adjusted the size to 600% */
-	background-clip: text;
+    background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     cursor: none;
@@ -36,13 +33,17 @@ html, body {
     align-items: center;
     justify-content: center;
     animation: gradient 15s linear infinite;
+    position: absolute; /* Ensure absolute positioning */
+    left: 50%; /* Position in the center horizontally */
+    top: 50%; /* Position in the center vertically */
+    transform: translate(-50%, -50%); /* Center the element */
 }
 
 @keyframes gradient {
     0% {
         background-position: 0% 0%;
     }
-	100% {
+    100% {
         background-position: 100% 100%;
     }
 }

@@ -1,11 +1,12 @@
-let closestTimeIndex = 0; // Declare closestTimeIndex outside the function to keep track of the current index
-let countdownEndTime = null; // Variable to track the time when countdown ends
+let closestTimeIndex = 0;
+let countdownEndTime = null;
+let xSpeed = 1.5;
+let ySpeed = 1.5;
 
 function timeUntil() {
     const now = new Date();
     const Times = [[9, 20, 0, true], [9,22,0,false], [10, 47, 27, true], [10,49,27,false], [11, 27, 0, true], [12, 3, 6, true], [12,5,6,false], [13, 22, 42,true],[13,29,42,false], [14, 45, 0,true], [14,50,0,false], [16,0,0,true], [24,0,0,false]];
 
-    // Convert Times array into an array of Date objects
     const timesInDateObjects = Times.map(time => {
         const [hour, minute, second] = time;
         const date = new Date();
@@ -13,20 +14,18 @@ function timeUntil() {
         return date;
     });
 
-    // Check if current time exceeds target time
     while (now > timesInDateObjects[closestTimeIndex]) {
-        // Find the next closest time from Times array
         closestTimeIndex++;
         if (closestTimeIndex >= Times.length) {
-            closestTimeIndex = 0; // Reset index if all times have passed
+            closestTimeIndex = 0;
         }
     }
 
+    const mainTextElement = document.querySelector('.mainText');
+
     if (now > timesInDateObjects[closestTimeIndex] && now - timesInDateObjects[closestTimeIndex - 1] <= 120000) {
-        const mainTextElement = document.querySelector('.mainText');
         mainTextElement.innerHTML = "Done!";
     } else if (!Times[closestTimeIndex][3]) {
-        const mainTextElement = document.querySelector('.mainText');
         mainTextElement.innerHTML = "Done!";
     } else {
         const targetTime = new Date(timesInDateObjects[closestTimeIndex]);
@@ -34,12 +33,46 @@ function timeUntil() {
         const minutes = Math.floor(timeDifference / (1000 * 60));
         const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
         const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        const mainTextElement = document.querySelector('.mainText');
         mainTextElement.innerHTML = formattedTime;
     }
 
-    adjustMainText(); // Call the function to adjust text size and rotation
+    adjustMainText();
+    moveText(); // Call the function to move the text
 }
+function moveText() {
+    const mainTextElement = document.querySelector('.mainText');
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    let x = parseFloat(mainTextElement.style.left) || screenWidth / 2; // Initialize x position to the center of the screen
+    let y = parseFloat(mainTextElement.style.top) || screenHeight / 2; // Initialize y position to the center of the screen
+
+    // Update position based on speed
+    
+    x += xSpeed;
+    y += ySpeed;
+    // Check if the text hits the boundaries and adjust the speed accordingly
+    if (x >= screenWidth - mainTextElement.offsetWidth + 20) {
+        x = screenWidth - mainTextElement.offsetWidth -1; // Adjust x position to stay within the boundary
+        xSpeed *= -1; // Reverse x direction
+    } else if (x <= -20) {
+        x = 1; // Adjust x position to stay within the boundary
+        xSpeed *= -1; // Reverse x direction
+    }
+    
+    if (y >= screenHeight - mainTextElement.offsetHeight + 20) {
+        y = screenHeight - mainTextElement.offsetHeight - 1; // Adjust y position to stay within the boundary
+        ySpeed *= -1; // Reverse y direction
+    } else if (y <= -20) {
+        y = 1; // Adjust y position to stay within the boundary
+        ySpeed *= -1; // Reverse y direction   
+    }
+
+    // Update the position of the text element
+    mainTextElement.style.left = x + 'px';
+    mainTextElement.style.top = y + 'px';
+}
+
 
 function adjustMainText() {
     const mainTextElement = document.querySelector('.mainText');
@@ -54,26 +87,21 @@ function adjustMainText() {
     }
 }
 
-// Initialize mainTextElement with an initial value
+function enterFullscreen() {
+    const mainTextElement = document.querySelector('.mainText');
+    if (mainTextElement.webkitRequestFullscreen) {
+        mainTextElement.webkitRequestFullscreen();
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const mainTextElement = document.querySelector('.mainText');
-    //mainTextElement.innerHTML = "Loading..."; // no point as it loads instantly
-
-    // Function to handle entering fullscreen
-    function enterFullscreen() {
-        if (mainTextElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-            mainTextElement.webkitRequestFullscreen();
-        }
-    }
     const now = new Date();
-    if (now.getDay() === 0 || now.getDay() === 6){ // is it Saturday or Sunday
-        const mainTextElement = document.querySelector('.mainText');
-        mainTextElement.innerHTML = "Weekend :)"; // Show weekend message
+    if (now.getDay() === 0 || now.getDay() === 6) {
+        mainTextElement.innerHTML = "Weekend :)";
     } else {
-        timeUntil();
-        // Start the countdown loop after a brief delay to allow rendering of initial value 
-        setInterval(timeUntil, 200);
-        // Fullscreen functionality with background color adjustment
+        timeUntil(); // Call the function to initialize the time display
+        setInterval(timeUntil, 5); // Start updating the time display
         mainTextElement.addEventListener('click', enterFullscreen);
     }
 });
