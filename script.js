@@ -74,6 +74,15 @@ function moveText() {
     mainTextElement.style.top = y + 'px';
 }
 
+function addCornerHit() {
+    const hits = localStorage.getItem("cornerHits") ?? 0
+    hits++;
+    localStorage.setitem("cornerHits", hits)
+}
+
+function getCornerHits() {
+    return localStorage.getItem("cornerHits")
+}
 
 function adjustMainText() {
     const mainTextElement = document.querySelector('.mainText');
