@@ -2,6 +2,7 @@ let closestTimeIndex = 0;
 let countdownEndTime = null;
 let xSpeed = 1.5;
 let ySpeed = 1.5;
+let arbitrarySpeedMultiplier = 2000;
 
 function timeUntil() {
     const now = new Date();
@@ -37,7 +38,7 @@ function timeUntil() {
     }
 
     adjustMainText();
-    moveText(); // Call the function to move the text
+    moveText();
 }
 function moveText() {
     const mainTextElement = document.querySelector('.mainText');
@@ -49,22 +50,22 @@ function moveText() {
 
     // Update position based on speed
     
-    x += xSpeed;
-    y += ySpeed;
+    x += xSpeed/(screenWidth/arbitrarySpeedMultiplier);
+    y += ySpeed/(screenWidth/arbitrarySpeedMultiplier);
     // Check if the text hits the boundaries and adjust the speed accordingly
-    if (x >= screenWidth - mainTextElement.offsetWidth + 20) {
-        x = screenWidth - mainTextElement.offsetWidth -1; // Adjust x position to stay within the boundary
+    if (x >= screenWidth - mainTextElement.offsetWidth) {
+        x = screenWidth - mainTextElement.offsetWidth; // Adjust x position to stay within the boundary
         xSpeed *= (-0.2*Math.random())-0.9; // Reverse x direction
         
-    } else if (x <= -20) {
+    } else if (x <= 0) {
         x = 1; // Adjust x position to stay within the boundary
         xSpeed *= (-0.2*Math.random())-0.9; // Reverse x direction
     }
     
-    if (y >= screenHeight - mainTextElement.offsetHeight + 20) {
-        y = screenHeight - mainTextElement.offsetHeight - 1; // Adjust y position to stay within the boundary
+    if (y >= screenHeight - mainTextElement.offsetHeight) {
+        y = screenHeight - mainTextElement.offsetHeight; // Adjust y position to stay within the boundary
         ySpeed *= (-0.2*Math.random())-0.9; // Reverse y direction
-    } else if (y <= -20) {
+    } else if (y <= 0) {
         y = 1; // Adjust y position to stay within the boundary
         ySpeed *= (-0.2*Math.random())-0.9; // Reverse y direction   
     }
