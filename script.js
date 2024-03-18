@@ -1,7 +1,7 @@
 let closestTimeIndex = 0;
 let countdownEndTime = null;
-let xSpeed = 1.5;
-let ySpeed = 1.5;
+let xSpeed = (Math.floor(Math.random()-.5)+.5)*3;
+let ySpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let arbitrarySpeedMultiplier = 2000;
 
 function timeUntil() {
@@ -99,6 +99,8 @@ function enterFullscreen() {
 document.addEventListener('DOMContentLoaded', () => {
     const mainTextElement = document.querySelector('.mainText');
     const now = new Date();
+    mainTextElement.style.left=Math.random()*window.innerWidth;
+    mainTextElement.style.top=Math.random()*window.innerHeight;
     if (now.getDay() === 0 || now.getDay() === 6) {
         mainTextElement.innerHTML = "Weekend :)";
     } else {
