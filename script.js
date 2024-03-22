@@ -3,6 +3,7 @@ let countdownEndTime = null;
 let xSpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let ySpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let arbitrarySpeedMultiplier = 2000;
+let triggerAnim=false;
 
 function timeUntil() {
     const now = new Date();
@@ -44,7 +45,7 @@ function moveText() {
     const mainTextElement = document.querySelector('.mainText');
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-
+    let triggerAnim=false;
     let x = parseFloat(mainTextElement.style.left) || screenWidth / 2; // Initialize x position to the center of the screen
     let y = parseFloat(mainTextElement.style.top) || screenHeight / 2; // Initialize y position to the center of the screen
 
@@ -54,25 +55,35 @@ function moveText() {
     y += ySpeed/(screenWidth/arbitrarySpeedMultiplier);
     // Check if the text hits the boundaries and adjust the speed accordingly
     if (x >= screenWidth - mainTextElement.offsetWidth) {
-        x = screenWidth - mainTextElement.offsetWidth; // Adjust x position to stay within the boundary
+        //x = screenWidth - mainTextElement.offsetWidth; // Adjust x position to stay within the boundary
+        x-=xSpeed
         xSpeed *= (-0.2*Math.random())-0.9; // Reverse x direction
-        
+        let triggerAnim=true;
     } else if (x <= 0) {
-        x = 1; // Adjust x position to stay within the boundary
+        //x = ; // Adjust x position to stay within the boundary
+        x-=xSpeed
         xSpeed *= (-0.2*Math.random())-0.9; // Reverse x direction
+        let triggerAnim=true;
     }
     
     if (y >= screenHeight - mainTextElement.offsetHeight) {
-        y = screenHeight - mainTextElement.offsetHeight; // Adjust y position to stay within the boundary
+        //y = screenHeight - mainTextElement.offsetHeight; // Adjust y position to stay within the boundary
+        y-=ySpeed
         ySpeed *= (-0.2*Math.random())-0.9; // Reverse y direction
+        let triggerAnim=true;
     } else if (y <= 0) {
-        y = 1; // Adjust y position to stay within the boundary
+        //y = 0; // Adjust y position to stay within the boundary
+        y-=ySpeed
         ySpeed *= (-0.2*Math.random())-0.9; // Reverse y direction   
+        let triggerAnim=true;
     }
 
     // Update the position of the text element
     mainTextElement.style.left = x + 'px';
     mainTextElement.style.top = y + 'px';
+    if (triggerAnim) {
+        document.getElementById('body').style.animation="flash 1s linear";
+    }
 }
 
 
@@ -99,8 +110,8 @@ function enterFullscreen() {
 document.addEventListener('DOMContentLoaded', () => {
     const mainTextElement = document.querySelector('.mainText');
     const now = new Date();
-    mainTextElement.style.left=Math.random()*window.innerWidth;
-    mainTextElement.style.top=Math.random()*window.innerHeight;
+    mainTextElement.style.left=Math.random()*window.innerWidth+'px';
+    mainTextElement.style.top=Math.random()*window.innerHeight+'px';
     if (now.getDay() === 0 || now.getDay() === 6) {
         mainTextElement.innerHTML = "Weekend :)";
     } else {
