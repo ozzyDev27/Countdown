@@ -6,13 +6,7 @@ html, body {
     align-items: center;
     justify-content: center;
     background-color: #0f0f0f;
-    overflow: hidden;
-}
-
-.grayBackground {
-    background-color: #ffffff;
-    size:100%;
-    z-index:999;
+    overflow: hidden;  
 }
 
 .mainText {
@@ -35,7 +29,6 @@ html, body {
     align-items: center;
     justify-content: center;
     animation: gradient 15s linear infinite;
-    fill-color:#ffffff;
     position: absolute; /* Ensure absolute positioning */
 }
 
