@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mainTextElement.style.left=(Math.random()*window.innerWidth-mainTextElement.offsetWidth)+'px';
     mainTextElement.style.top=(Math.random()*window.innerHeight-mainTextElement.offsetHeight)+'px';
     if (now.getDay() === 0 || now.getDay() === 6) {
-        mainTextElement.innerHTML = "Weekend :)";
+        mainTextElement.innerHTML = "Weekend";
     } else {
         timeUntil(); // Call the function to initialize the time display
         setInterval(timeUntil, 5); // Start updating the time display
