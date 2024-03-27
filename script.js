@@ -118,6 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         timeUntil(); // Call the function to initialize the time display
         setInterval(timeUntil, 5); // Start updating the time display
-        mainTextElement.addEventListener('click', enterFullscreen);
+        document.querySelector('body').addEventListener('click', enterFullscreen);
     }
 });
