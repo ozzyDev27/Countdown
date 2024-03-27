@@ -4,6 +4,7 @@ let xSpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let ySpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let arbitrarySpeedMultiplier = 2000;
 let triggerAnim=false;
+let cache=[false,false,false];
 
 function timeUntil() {
     const now = new Date();
@@ -101,17 +102,17 @@ function adjustMainText() {
 }
 
 function enterFullscreen() {
-    const mainTextElement = document.querySelector('.mainText');
-    if (mainTextElement.webkitRequestFullscreen) {
-        mainTextElement.webkitRequestFullscreen();
+    const body = document.querySelector('body');
+    if (body.webkitRequestFullscreen) {
+        body.webkitRequestFullscreen();
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const mainTextElement = document.querySelector('.mainText');
     const now = new Date();
-    mainTextElement.style.left=Math.random()*(window.innerWidth-mainTextElement.offsetWidth)+'px';
-    mainTextElement.style.top=Math.random()*(window.innerHeight-mainTextElement.offsetHeight)+'px';
+    mainTextElement.style.left=(Math.random()*(window.innerWidth-mainTextElement.offSetWidth))+'px';
+    mainTextElement.style.top=(Math.random()*(window.innerHeight-mainTextElement.offsetHeight))+'px';
     if (now.getDay() === 0 || now.getDay() === 6) {
         mainTextElement.innerHTML = "Weekend";
     } else {
