@@ -4,7 +4,6 @@ let xSpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let ySpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let arbitrarySpeedMultiplier = 2000;
 let triggerAnim=false;
-let cache=[false,false,false];
 
 function timeUntil() {
     const now = new Date();
@@ -49,37 +48,35 @@ function moveText() {
     let triggerAnim=false;
     let x = parseFloat(mainTextElement.style.left) || screenWidth / 2; // Initialize x position to the center of the screen
     let y = parseFloat(mainTextElement.style.top) || screenHeight / 2; // Initialize y position to the center of the screen
-
-    // Update position based on speed
-    
+    let bounceNum=0
     x += xSpeed/(screenWidth/arbitrarySpeedMultiplier);
     y += ySpeed/(screenWidth/arbitrarySpeedMultiplier);
-    // Check if the text hits the boundaries and adjust the speed accordingly
     if (x >= screenWidth - mainTextElement.offsetWidth) {
-        //x = screenWidth - mainTextElement.offsetWidth; // Adjust x position to stay within the boundary
         x-=xSpeed
-        xSpeed *= (-0.2*Math.random())-0.9; // Reverse x direction
+        xSpeed = Math.abs(xSpeed)*-1*((-0.2*Math.random())-0.9); // Reverse x direction
         let triggerAnim=true;
+        if (bounceNum==1){
+            x-=abs(xSpeed)*2
+        }
+        else{
+            bounceNum=1;
+        }
     } else if (x <= 0) {
-        //x = ; // Adjust x position to stay within the boundary
         x-=xSpeed
-        xSpeed *= (-0.2*Math.random())-0.9; // Reverse x direction
+        xSpeed = Math.abs(xSpeed)*((-0.2*Math.random())-0.9); // Reverse x direction
         let triggerAnim=true;
+        let bounceNum=0
     }
     
     if (y >= screenHeight - mainTextElement.offsetHeight) {
-        //y = screenHeight - mainTextElement.offsetHeight; // Adjust y position to stay within the boundary
         y-=ySpeed
-        ySpeed *= (-0.2*Math.random())-0.9; // Reverse y direction
+        ySpeed =Math.abs(ySpeed)*-1* ((-0.2*Math.random())-0.9);
         let triggerAnim=true;
     } else if (y <= 0) {
-        //y = 0; // Adjust y position to stay within the boundary
         y-=ySpeed
-        ySpeed *= (-0.2*Math.random())-0.9; // Reverse y direction   
+        ySpeed = Math.abs(ySpeed)*((-0.2*Math.random())-0.9);
         let triggerAnim=true;
     }
-
-    // Update the position of the text element
     mainTextElement.style.left = x + 'px';
     mainTextElement.style.top = y + 'px';
     if (triggerAnim) {
@@ -98,8 +95,7 @@ function adjustMainText() {
     } else {
         mainTextElement.style.transform = 'none';
         mainTextElement.style.fontSize = '15vw';
-    }
-}
+    }}
 
 function enterFullscreen() {
     const body = document.querySelector('body');
