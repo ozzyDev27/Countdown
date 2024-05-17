@@ -56,6 +56,7 @@ function moveText() {
         let triggerAnim=true;
         if (bounceNum==1){
             x=(screenWidth-mainTextElement.offsetWidth)-10;
+            xSpeed=-1.5;
             bounceNum=0;
         }
         else{
