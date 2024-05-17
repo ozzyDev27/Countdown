@@ -2,7 +2,7 @@ let closestTimeIndex = 0;
 let countdownEndTime = null;
 let xSpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let ySpeed = (Math.floor(Math.random()-.5)+.5)*3;
-let arbitrarySpeedMultiplier = 2000;
+let arbitrarySpeedMultiplier = 1;
 let triggerAnim=false;
 
 function timeUntil() {
@@ -49,32 +49,33 @@ function moveText() {
     let x = parseFloat(mainTextElement.style.left) || screenWidth / 2; // Initialize x position to the center of the screen
     let y = parseFloat(mainTextElement.style.top) || screenHeight / 2; // Initialize y position to the center of the screen
     let bounceNum=0
-    x += xSpeed/(screenWidth/arbitrarySpeedMultiplier);
-    y += ySpeed/(screenWidth/arbitrarySpeedMultiplier);
+    x += xSpeed*arbitrarySpeedMultiplier;
+    y += ySpeed*arbitrarySpeedMultiplier;
     if (x >= screenWidth - mainTextElement.offsetWidth) {
-        x-=xSpeed
-        xSpeed = Math.abs(xSpeed)*-1*((-0.2*Math.random())-0.9); // Reverse x direction
+        x-=xSpeed*arbitrarySpeedMultiplier;
         let triggerAnim=true;
         if (bounceNum==1){
-            x-=abs(xSpeed)*2
+            x=(screenWidth-mainTextElement.offsetWidth)-10;
+            bounceNum=0;
         }
         else{
             bounceNum=1;
         }
-    } else if (x <= 0) {
-        x-=xSpeed
         xSpeed = Math.abs(xSpeed)*((-0.2*Math.random())-0.9); // Reverse x direction
+    } else if (x <= 0) {
+        x-=xSpeed*arbitrarySpeedMultiplier;
+        xSpeed = Math.abs(xSpeed)*-1*((-0.2*Math.random())-0.9); // Reverse x direction
         let triggerAnim=true;
         let bounceNum=0
     }
     
     if (y >= screenHeight - mainTextElement.offsetHeight) {
-        y-=ySpeed
-        ySpeed =Math.abs(ySpeed)*-1* ((-0.2*Math.random())-0.9);
+        y-=ySpeed*arbitrarySpeedMultiplier;
+        ySpeed =Math.abs(ySpeed)*((-0.2*Math.random())-0.9);
         let triggerAnim=true;
     } else if (y <= 0) {
-        y-=ySpeed
-        ySpeed = Math.abs(ySpeed)*((-0.2*Math.random())-0.9);
+        y-=ySpeed*arbitrarySpeedMultiplier;
+        ySpeed = Math.abs(ySpeed)*-1*((-0.2*Math.random())-0.9);
         let triggerAnim=true;
     }
     mainTextElement.style.left = x + 'px';
