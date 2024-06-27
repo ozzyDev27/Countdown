@@ -7,7 +7,7 @@ let triggerAnim=false;
 
 function timeUntil() {
     const now = new Date();
-    const Times = [[9, 20, 0, true], [9,22,0,false], [10, 47, 27, true], [10,49,27,false], [11, 27, 0, true], [12, 5, 6, true], [12,7,6,false], [13, 22, 42,true],[13,29,42,false], [14, 45, 0,true], [14,50,0,false], [16,0,0,true], [24,0,0,false]];
+    const Times = [[11, 25, 0, true],  [24,0,0,false]];
 
     const timesInDateObjects = Times.map(time => {
         const [hour, minute, second] = time;
