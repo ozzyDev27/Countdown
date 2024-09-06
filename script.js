@@ -65,7 +65,10 @@ function moveText() {
         xSpeed = Math.abs(xSpeed)*((-0.2*Math.random())-0.9); // Reverse x direction
     } else if (x <= 0) {
         x-=xSpeed*arbitrarySpeedMultiplier;
-        xSpeed = max(min(Math.abs(xSpeed)*-1*((-0.2*Math.random())-0.9),1.5),-1.5); // Reverse x direction
+        xSpeed = Math.abs(xSpeed)*-1*((-0.2*Math.random())-0.9); // Reverse x direction
+        if (Math.abs(xSpeed)<1.5){
+        xSpeed=(Math.abs(xSpeed)/xSpeed)*1.5;
+        }
         let triggerAnim=true;
         let bounceNum=0
     }
@@ -76,7 +79,10 @@ function moveText() {
         let triggerAnim=true;
     } else if (y <= 0) {
         y-=ySpeed*arbitrarySpeedMultiplier;
-        ySpeed = max(min(Math.abs(ySpeed)*-1*((-0.2*Math.random())-0.9),1.5),-1.5);
+        ySpeed = Math.abs(ySpeed)*-1*((-0.2*Math.random())-0.9);
+        if (Math.abs(ySpeed)<1.5){
+        ySpeed=(Math.abs(ySpeed)/ySpeed)*1.5;
+        }
         let triggerAnim=true;
     }
     mainTextElement.style.left = x + 'px';
