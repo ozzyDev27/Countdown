@@ -4,6 +4,7 @@ let xSpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let ySpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let arbitrarySpeedMultiplier = 1;
 let triggerAnim=false;
+let bounceNum=0;
 
 function timeUntil() {
     const now = new Date();
@@ -50,7 +51,6 @@ function moveText() {
     const screenHeight = window.innerHeight;
     let x = parseFloat(mainTextElement.style.left) || screenWidth / 2; // Initialize x position to the center of the screen
     let y = parseFloat(mainTextElement.style.top) || screenHeight / 2; // Initialize y position to the center of the screen
-    let bounceNum=0
     x += xSpeed*arbitrarySpeedMultiplier;
     y += ySpeed*arbitrarySpeedMultiplier;
     if (x >= screenWidth - mainTextElement.offsetWidth) {
