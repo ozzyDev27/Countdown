@@ -63,6 +63,7 @@ function moveText() {
         }
         else{
             bounceNum=1;
+            console.log("!!!")
         }
         xSpeed = Math.abs(xSpeed)*((-0.2*Math.random())-0.9); // Reverse x direction
     } else if (x <= 0) {
