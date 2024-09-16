@@ -62,14 +62,15 @@ function moveText() {
             console.log("uhh")
         }
         else{
+            console.log(bounceNum)
             bounceNum=1;
-            console.log("!!!")
         }
         xSpeed = Math.abs(xSpeed)*((-0.2*Math.random())-0.9); // Reverse x direction
     } else if (x <= 0) {
         x-=xSpeed*arbitrarySpeedMultiplier;
         xSpeed = Math.abs(xSpeed)*-1*((-0.2*Math.random())-0.9); // Reverse x direction
-        let bounceNum=0
+        bounceNum=0
+        console.log("!!!")
     }
     
     if (y >= screenHeight - mainTextElement.offsetHeight) {
