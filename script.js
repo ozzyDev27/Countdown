@@ -41,11 +41,13 @@ function timeUntil() {
     adjustMainText();
     moveText();
 }
+
+
+
 function moveText() {
     const mainTextElement = document.querySelector('.mainText');
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-    let triggerAnim=false;
     let x = parseFloat(mainTextElement.style.left) || screenWidth / 2; // Initialize x position to the center of the screen
     let y = parseFloat(mainTextElement.style.top) || screenHeight / 2; // Initialize y position to the center of the screen
     let bounceNum=0
@@ -53,11 +55,11 @@ function moveText() {
     y += ySpeed*arbitrarySpeedMultiplier;
     if (x >= screenWidth - mainTextElement.offsetWidth) {
         x-=xSpeed*arbitrarySpeedMultiplier;
-        let triggerAnim=true;
         if (bounceNum==1){
             x=(screenWidth-mainTextElement.offsetWidth)-10;
             xSpeed=-1.5;
             bounceNum=0;
+            console.log("uhh")
         }
         else{
             bounceNum=1;
@@ -66,24 +68,18 @@ function moveText() {
     } else if (x <= 0) {
         x-=xSpeed*arbitrarySpeedMultiplier;
         xSpeed = Math.abs(xSpeed)*-1*((-0.2*Math.random())-0.9); // Reverse x direction
-        let triggerAnim=true;
         let bounceNum=0
     }
     
     if (y >= screenHeight - mainTextElement.offsetHeight) {
         y-=ySpeed*arbitrarySpeedMultiplier;
         ySpeed =Math.abs(ySpeed)*((-0.2*Math.random())-0.9);
-        let triggerAnim=true;
     } else if (y <= 0) {
         y-=ySpeed*arbitrarySpeedMultiplier;
         ySpeed = Math.abs(ySpeed)*-1*((-0.2*Math.random())-0.9);
-        let triggerAnim=true;
     }
     mainTextElement.style.left = x + 'px';
     mainTextElement.style.top = y + 'px';
-    if (triggerAnim) {
-        document.getElementById('body').style.animation="flash 1s linear";
-    }
 }
 
 
