@@ -14,11 +14,12 @@ html, body {
     padding: 0px;
     margin: 0px;
     text-align: left;
-    font-family: 'Preahvihear', sans-serif;
+    font-family: 'Concert One', sans-serif;
+    font-weight:400;
     font-size: 10vw;
     background-color: #0f0f0f;
     background: linear-gradient(to bottom right, #E62BA8, #E33059, #E24141, #F1733D, #FCDB64, #49E25B, #30CC9F, #39D2C0, #44AAEA, #5D6AF3, #A24BCE, #C028B6, #E62BA8, #E33059, #E24141, #F1733D);
-    background-size: 400% 400%; /* Adjusted the size to 600% */
+    background-size: 400% 400%;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -30,7 +31,7 @@ html, body {
     align-items: center;
     justify-content: center;
     animation: gradient 15s linear infinite;
-    position: absolute; /* Ensure absolute positioning */
+    position: absolute;
 }
 
 @keyframes gradient {
