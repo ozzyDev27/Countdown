@@ -51,8 +51,8 @@ function moveText() {
     const screenHeight = window.innerHeight;
     let x = parseFloat(mainTextElement.style.left) || screenWidth / 2; // Initialize x position to the center of the screen
     let y = parseFloat(mainTextElement.style.top) || screenHeight / 2; // Initialize y position to the center of the screen
-    x += xSpeed*arbitrarySpeedMultiplier;
-    y += ySpeed*arbitrarySpeedMultiplier;
+    x += ((xSpeed*arbitrarySpeedMultiplier)/1680)*screenWidth;
+    y += ((ySpeed*arbitrarySpeedMultiplier)/1050)*screenHeight;
     if (x >= screenWidth - mainTextElement.offsetWidth) {
         x-=xSpeed*arbitrarySpeedMultiplier;
         if (bounceNum==1){
