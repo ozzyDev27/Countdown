@@ -8,7 +8,7 @@ let bounceNum=0;
 
 function timeUntil() {
     const now = new Date();
-    const Times = [[9, 20, 0, true], [9,22,0,false], [10, 47, 27, true], [10,49,27,false], [12, 5, 6, true], [12,7,6,false], [12, 46, 0,true],[12,51,0,true], [14, 45, 0,true], [14,50,0,false], [16,0,0,true], [24,0,0,false]];
+    const Times = [[12,16,0,false], [12, 46, 0,true],[12,51,0,true], [13, 1, 0,true], [13,6,0,true], [13,16,0,true], [13,21,0,true],[23,0,0,false]];
 
     const timesInDateObjects = Times.map(time => {
         const [hour, minute, second] = time;
