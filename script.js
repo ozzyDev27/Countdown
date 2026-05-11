@@ -32,14 +32,17 @@ function moveText() {
     const mainTextElement = document.querySelector('.mainText');
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-    let x = parseFloat(mainTextElement.style.left) || screenWidth / 2; // Initialize x position to the center of the screen
-    let y = parseFloat(mainTextElement.style.top) || screenHeight / 2; // Initialize y position to the center of the screen
+    const isPortrait = screenHeight > screenWidth;
+    const visWidth = isPortrait ? mainTextElement.offsetHeight : mainTextElement.offsetWidth;
+    const visHeight = isPortrait ? mainTextElement.offsetWidth : mainTextElement.offsetHeight;
+    let x = parseFloat(mainTextElement.style.left) || screenWidth / 2;
+    let y = parseFloat(mainTextElement.style.top) || screenHeight / 2;
     x += ((xSpeed*arbitrarySpeedMultiplier)/1680)*screenWidth;
     y += ((ySpeed*arbitrarySpeedMultiplier)/1050)*screenHeight;
-    if (x >= screenWidth - mainTextElement.offsetWidth) {
+    if (x >= screenWidth - visWidth) {
         x-=xSpeed*arbitrarySpeedMultiplier;
         if (bounceNum==1){
-            x=(screenWidth-mainTextElement.offsetWidth)-10;
+            x=(screenWidth-visWidth)-10;
             xSpeed=-1.5;
             bounceNum=0;
             console.log("uhh")
@@ -48,17 +51,17 @@ function moveText() {
             console.log(bounceNum)
             bounceNum=1;
         }
-        xSpeed = Math.abs(xSpeed)*((-0.2*Math.random())-0.9); // Reverse x direction
+        xSpeed = Math.abs(xSpeed)*((-0.2*Math.random())-0.9);
         if (Math.abs(xSpeed) < speedFloor) xSpeed = -speedFloor;
     } else if (x <= 0) {
         x-=xSpeed*arbitrarySpeedMultiplier;
-        xSpeed = Math.abs(xSpeed)*-1*((-0.2*Math.random())-0.9); // Reverse x direction
+        xSpeed = Math.abs(xSpeed)*-1*((-0.2*Math.random())-0.9);
         if (Math.abs(xSpeed) < speedFloor) xSpeed = speedFloor;
         bounceNum=0
         console.log("!!!")
     }
     
-    if (y >= screenHeight - mainTextElement.offsetHeight) {
+    if (y >= screenHeight - visHeight) {
         y-=ySpeed*arbitrarySpeedMultiplier;
         ySpeed =Math.abs(ySpeed)*((-0.2*Math.random())-0.9);
         if (Math.abs(ySpeed) < speedFloor) ySpeed = -speedFloor;
@@ -90,7 +93,6 @@ function enterFullscreen() {
         body.webkitRequestFullscreen();
     }
 }
-
 document.addEventListener('DOMContentLoaded', () => {
     const mainTextElement = document.querySelector('.mainText');
     const now = new Date();
