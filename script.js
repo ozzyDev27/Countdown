@@ -1,42 +1,25 @@
-let closestTimeIndex = 0;
-let countdownEndTime = null;
 let xSpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let ySpeed = (Math.floor(Math.random()-.5)+.5)*3;
 let arbitrarySpeedMultiplier = 1;
 let triggerAnim=false;
 let bounceNum=0;
+let started = false;
+let manualTarget = null;
+const speedFloor = 1.5;
 
 function timeUntil() {
     const now = new Date();
-    const Times = [[9, 26, 0, true], [9,33,0,false], [10, 47, 27, true], [10,51,27,false], [12, 7, 6, true], [12,10,6,false], [12, 46, 0,true],[12,51,0,true], [14, 45, 0,true], [15,00,0,false], [16,0,0,true], [24,0,0,false]];
-    
-    const timesInDateObjects = Times.map(time => {
-        const [hour, minute, second] = time;
-        const date = new Date();
-        date.setHours(hour, minute, second, 0);
-        return date;
-    });
-
-    while (now > timesInDateObjects[closestTimeIndex]) {
-        closestTimeIndex++;
-        if (closestTimeIndex >= Times.length) {
-            closestTimeIndex = 0;
-        }
-    }
-
     const mainTextElement = document.querySelector('.mainText');
 
-    if (now > timesInDateObjects[closestTimeIndex] && now - timesInDateObjects[closestTimeIndex - 1] <= 120000) {
-        mainTextElement.innerHTML = "Done!";
-    } else if (!Times[closestTimeIndex][3]) {
-        mainTextElement.innerHTML = "Done!";
-    } else {
-        const targetTime = new Date(timesInDateObjects[closestTimeIndex]);
-        const timeDifference = targetTime - now;
-        const minutes = Math.floor(timeDifference / (1000 * 60));
-        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        mainTextElement.innerHTML = formattedTime;
+    if (manualTarget) {
+        const timeDifference = manualTarget - now;
+        if (timeDifference <= 0) {
+            mainTextElement.innerHTML = "Done!";
+        } else {
+            const minutes = Math.floor(timeDifference / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+            mainTextElement.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
     }
 
     adjustMainText();
@@ -66,9 +49,11 @@ function moveText() {
             bounceNum=1;
         }
         xSpeed = Math.abs(xSpeed)*((-0.2*Math.random())-0.9); // Reverse x direction
+        if (Math.abs(xSpeed) < speedFloor) xSpeed = -speedFloor;
     } else if (x <= 0) {
         x-=xSpeed*arbitrarySpeedMultiplier;
         xSpeed = Math.abs(xSpeed)*-1*((-0.2*Math.random())-0.9); // Reverse x direction
+        if (Math.abs(xSpeed) < speedFloor) xSpeed = speedFloor;
         bounceNum=0
         console.log("!!!")
     }
@@ -76,9 +61,11 @@ function moveText() {
     if (y >= screenHeight - mainTextElement.offsetHeight) {
         y-=ySpeed*arbitrarySpeedMultiplier;
         ySpeed =Math.abs(ySpeed)*((-0.2*Math.random())-0.9);
+        if (Math.abs(ySpeed) < speedFloor) ySpeed = -speedFloor;
     } else if (y <= 0) {
         y-=ySpeed*arbitrarySpeedMultiplier;
         ySpeed = Math.abs(ySpeed)*-1*((-0.2*Math.random())-0.9);
+        if (Math.abs(ySpeed) < speedFloor) ySpeed = speedFloor;
     }
     mainTextElement.style.left = x + 'px';
     mainTextElement.style.top = y + 'px';
@@ -109,11 +96,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const now = new Date();
     mainTextElement.style.left=(Math.random()*(window.innerWidth-mainTextElement.offSetWidth))+'px';
     mainTextElement.style.top=(Math.random()*(window.innerHeight-mainTextElement.offsetHeight))+'px';
-    if (now.getDay() === 0 || now.getDay() === 6) {
+    if (now.getDay() === 0) {
         mainTextElement.innerHTML = "Weekend";
+        adjustMainText();
+        setInterval(moveText, 5);
     } else {
-        timeUntil(); // Call the function to initialize the time display
-        setInterval(timeUntil, 5); // Start updating the time display
-        document.querySelector('body').addEventListener('click', enterFullscreen);
+        mainTextElement.innerHTML = "Click!";
+        adjustMainText();
+        const moveInterval = setInterval(moveText, 5);
+
+        document.querySelector('body').addEventListener('click', () => {
+            const input = prompt('Enter target time (HH:MM):');
+            enterFullscreen();
+            if (!input) return;
+            let [h, m] = input.split(':').map(Number);
+            if (isNaN(h) || isNaN(m)) return;
+            const target = new Date();
+            target.setHours(h, m, 0, 0);
+            if (target <= new Date() && h < 12) {
+                target.setHours(h + 12, m, 0, 0);
+            }
+            manualTarget = target;
+            if (!started) {
+                started = true;
+                clearInterval(moveInterval);
+                setInterval(timeUntil, 5);
+            }
+        });
     }
 });
