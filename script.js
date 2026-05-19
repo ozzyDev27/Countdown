@@ -98,32 +98,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const now = new Date();
     mainTextElement.style.left=(Math.random()*(window.innerWidth-mainTextElement.offSetWidth))+'px';
     mainTextElement.style.top=(Math.random()*(window.innerHeight-mainTextElement.offsetHeight))+'px';
-    if (now.getDay() === 0) {
-        mainTextElement.innerHTML = "Weekend";
-        adjustMainText();
-        setInterval(moveText, 5);
-    } else {
-        mainTextElement.innerHTML = "Click!";
-        adjustMainText();
-        const moveInterval = setInterval(moveText, 5);
+    mainTextElement.innerHTML = "Click!";
+    adjustMainText();
+    const moveInterval = setInterval(moveText, 5);
 
-        document.querySelector('body').addEventListener('click', () => {
-            const input = prompt('Enter target time (HH:MM):');
-            enterFullscreen();
-            if (!input) return;
-            let [h, m] = input.split(':').map(Number);
-            if (isNaN(h) || isNaN(m)) return;
-            const target = new Date();
-            target.setHours(h, m, 0, 0);
-            if (target <= new Date() && h < 12) {
-                target.setHours(h + 12, m, 0, 0);
-            }
-            manualTarget = target;
-            if (!started) {
-                started = true;
-                clearInterval(moveInterval);
-                setInterval(timeUntil, 5);
-            }
-        });
-    }
+    document.querySelector('body').addEventListener('click', () => {
+        const input = prompt('Enter target time (HH:MM):');
+        enterFullscreen();
+        if (!input) return;
+        let [h, m] = input.split(':').map(Number);
+        if (isNaN(h) || isNaN(m)) return;
+        const target = new Date();
+        target.setHours(h, m, 0, 0);
+        if (target <= new Date() && h < 12) {
+            target.setHours(h + 12, m, 0, 0);
+        }
+        manualTarget = target;
+        if (!started) {
+            started = true;
+            clearInterval(moveInterval);
+            setInterval(timeUntil, 5);
+        }
+    });
+    
 });
